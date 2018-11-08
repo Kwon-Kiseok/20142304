@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "Player.h"
 #include "TextureManager.h"
 
 class Game
@@ -22,6 +23,7 @@ private:
 	//SDL_Rect m_destinationRectangle;//대상 사각형
 	int m_currentFrame;
 	//TextureManager m_textureManager;
-
+	GameObject m_go;
+	Player m_player;
 	bool m_bRunning;
 };
