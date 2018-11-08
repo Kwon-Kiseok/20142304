@@ -1,6 +1,6 @@
 /*
 	2018.11.08		
-	Kwon Ki seok
+	Kwon Kiseok
 	main.cpp
 */
 #include "Game.h"
