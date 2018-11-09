@@ -7,6 +7,7 @@
 #include <iostream>
 
 Game* Game::s_pInstance = 0;
+TheInputHandler* TheInputHandler::s_pInstance = 0;
 
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
@@ -39,7 +40,7 @@ int main(int argc, char* args[])
 		return -1;
 	}
 	std::cout << "game closing...\n";
-	TheGame::Instance()->clean();
+	TheGame::Instance()->quit();
 	return 0;
 }
 

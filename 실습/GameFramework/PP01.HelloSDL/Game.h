@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Enemy.h"
+#include "InputHandler.h"
 #include <vector>
 
 class Game
@@ -13,6 +14,7 @@ public:
 	void update();
 	void handleEvents();
 	void clean();
+	void quit();
 	bool running() { return m_bRunning; }
 
 	static Game* Instance()
