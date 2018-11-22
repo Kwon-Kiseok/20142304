@@ -2,7 +2,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "InputHandler.h"
-#include <vector>
+#include "MenuState.h"
+#include "PlayState.h"
+#include "GameStateMachine.h"
 
 class Game
 {
@@ -14,7 +16,7 @@ public:
 	void update();
 	void handleEvents();
 	void clean();
-	void quit();
+	void quit() { m_bRunning = false; };
 	bool running() { return m_bRunning; }
 
 	static Game* Instance()
@@ -36,17 +38,11 @@ private:
 
 	SDL_Window * m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	//SDL_Texture* m_pTexture;		//SDL_Texture 
-	//SDL_Rect m_sourceRectangle;		//원본 사각형
-	//SDL_Rect m_destinationRectangle;//대상 사각형
 	int m_currentFrame;
-	//TextureManager m_textureManager;
+	bool m_bRunning;
 	
 	std::vector<GameObject*> m_gameObjects;
-	
-	//GameObject* m_go;
-	//GameObject* m_player;
-	//GameObject* m_enemy;
-	bool m_bRunning;
+
+	GameStateMachine* m_pGameStateMachine;
 };
 typedef Game TheGame;
