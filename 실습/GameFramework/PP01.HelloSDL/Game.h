@@ -30,7 +30,7 @@ public:
 	}
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
-
+	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 private:
 	Game() {}
 

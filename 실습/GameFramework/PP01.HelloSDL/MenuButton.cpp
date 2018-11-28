@@ -28,3 +28,13 @@ void MenuButton::update()
 		}
 	}
 }
+
+void MenuButton::draw()
+{
+	SDLGameObject::draw();
+}
+
+void MenuButton::clean()
+{
+	SDLGameObject::clean();
+}
