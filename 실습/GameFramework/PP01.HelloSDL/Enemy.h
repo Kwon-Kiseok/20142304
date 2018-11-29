@@ -12,5 +12,6 @@ public:
 	virtual void update();
 	virtual void clean();
 private:
-	void handleInput();
+	//void handleInput();
+	int m_numFrames = 5;
 };
