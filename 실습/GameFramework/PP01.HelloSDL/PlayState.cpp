@@ -7,6 +7,10 @@ void PlayState::update()
 	{
 		m_gameObjects[i]->update();
 	}
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		TheGame::Instance()->getStateMachine()->changeState(PauseState::Instance());
+	}
 }
 
 void PlayState::render()
