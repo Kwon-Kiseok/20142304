@@ -27,5 +27,5 @@ private:
 	static void s_resumePlay();
 	static const std::string s_pauseID;
 	static PauseState* s_pInstance;
-	std::vector<GameObject*> m_gameObject;
+	//std::vector<GameObject*> m_gameObjects;
 };

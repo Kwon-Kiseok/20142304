@@ -1,15 +1,18 @@
 #include "PlayState.h"
-#include "Game.h"
+
+//PlayState *PlayState::s_pInstance = NULL;
 const std::string PlayState::s_playID = "PLAY";
+
+
 void PlayState::update()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(PauseState::Instance());
+	}
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
 	}
 	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
@@ -55,6 +58,7 @@ bool PlayState::onExit()
 	m_gameObjects.clear();
 
 	TheTextureManager::Instance()->clearFromTextureMap("helicopter");
+	TheTextureManager::Instance()->clearFromTextureMap("helicopter2");
 	std::cout << "exiting PlayState\n";
 	return true;
 }

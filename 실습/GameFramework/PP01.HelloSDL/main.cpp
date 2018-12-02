@@ -9,6 +9,8 @@
 Game* Game::s_pInstance = 0;
 PlayState* PlayState::s_pInstance = 0;
 MenuState* MenuState::s_pInstance = 0;
+PauseState* PauseState::s_pInstance = 0;
+GameOverState* GameOverState::s_pInstance = 0;
 TheInputHandler* TheInputHandler::s_pInstance = 0;
 
 const int FPS = 60;

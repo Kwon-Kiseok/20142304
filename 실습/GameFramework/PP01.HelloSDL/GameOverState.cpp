@@ -4,7 +4,7 @@
 #include "Game.h"
 
 const std::string GameOverState::s_gameOverID = "GAMEOVER";
-GameOverState *GameOverState::s_pInstance = NULL;
+//GameOverState *GameOverState::s_pInstance = NULL;
 
 void GameOverState::s_gameOverToMain()
 {
@@ -47,4 +47,35 @@ bool GameOverState::onEnter()
 	m_gameObjects.push_back(button2);
 	std::cout << "entering PauseState\n";
 	return true;
+}
+
+bool GameOverState::onExit()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+	m_gameObjects.clear();
+
+	TheTextureManager::Instance()->clearFromTextureMap("gameovertext");
+	TheTextureManager::Instance()->clearFromTextureMap("mainbutton");
+	TheTextureManager::Instance()->clearFromTextureMap("restartbutton");
+	std::cout << "exiting MenuState\n";
+	return true;
+}
+
+void GameOverState::update()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+}
+
+void GameOverState::render()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
 }

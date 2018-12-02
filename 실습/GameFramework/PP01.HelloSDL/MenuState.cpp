@@ -2,6 +2,8 @@
 #include "MenuButton.h"
 #include "PlayState.h"
 #include "Game.h"
+
+//MenuState *MenuState::s_pInstance = NULL;
 const std::string MenuState::s_menuID = "MENU";
 
 void MenuState::update()

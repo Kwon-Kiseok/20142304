@@ -41,5 +41,4 @@ void SDLGameObject::update()
 
 void SDLGameObject::clean()
 {
-
 }
