@@ -13,6 +13,8 @@ void PlayState::update()
 	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
 	{
+		//폭발 효과
+		explosion();
 		TheGame::Instance()->getStateMachine()->changeState(GameOverState::Instance());
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
@@ -85,4 +87,10 @@ bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
 	if (rightA <= leftB) { return false; }
 	if (leftA >= rightB) { return false; }
 	return true;
+}
+
+void PlayState::explosion()
+{
+	//explosion 이미지 출력해주어야 함
+
 }
