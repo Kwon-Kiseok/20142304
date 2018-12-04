@@ -1,8 +1,6 @@
 #pragma once
 #include "GameState.h"
 
-class GameObject;
-
 class GameOverState : public GameState
 {
 public:
@@ -27,5 +25,4 @@ private:
 	static void s_restartPlay();
 	static const std::string s_gameOverID;
 	static GameOverState* s_pInstance;
-	std::vector<GameObject*> m_gameObjects;
 };

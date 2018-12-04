@@ -6,10 +6,6 @@ const std::string PlayState::s_playID = "PLAY";
 
 void PlayState::update()
 {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
-	{
-		TheGame::Instance()->getStateMachine()->changeState(PauseState::Instance());
-	}
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
@@ -18,6 +14,10 @@ void PlayState::update()
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(GameOverState::Instance());
+	}
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		TheGame::Instance()->getStateMachine()->changeState(PauseState::Instance());
 	}
 }
 

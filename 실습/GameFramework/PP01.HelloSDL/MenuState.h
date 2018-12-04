@@ -24,5 +24,4 @@ private:
 	static MenuState* s_pInstance;
 	static void s_menuToPlay();
 	static void s_exitFromMenu();
-	//std::vector<GameObject*> m_gameObjects;
 };

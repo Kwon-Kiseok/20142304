@@ -9,11 +9,13 @@ const std::string GameOverState::s_gameOverID = "GAMEOVER";
 void GameOverState::s_gameOverToMain()
 {
 	TheGame::Instance()->getStateMachine()->changeState(MenuState::Instance());
+	std::cout << "GoToMain button clicked\n";
 }
 
 void GameOverState::s_restartPlay()
 {
 	TheGame::Instance()->getStateMachine()->changeState(PlayState::Instance());
+	std::cout << "Restart button clicked\n";
 }
 
 bool GameOverState::onEnter()
@@ -45,7 +47,7 @@ bool GameOverState::onEnter()
 	m_gameObjects.push_back(gameOverText);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
-	std::cout << "entering PauseState\n";
+	std::cout << "entering GameOverState\n";
 	return true;
 }
 
@@ -53,7 +55,7 @@ bool GameOverState::onExit()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
-		m_gameObjects[i]->draw();
+		m_gameObjects[i]->clean();
 	}
 	m_gameObjects.clear();
 
@@ -68,7 +70,7 @@ void GameOverState::update()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
-		m_gameObjects[i]->draw();
+		m_gameObjects[i]->update();
 	}
 }
 
