@@ -2,8 +2,10 @@
 #include "MenuButton.h"
 #include "PlayState.h"
 #include "Game.h"
+#include <SDL_mixer.h>
 
 const std::string MenuState::s_menuID = "MENU";
+Mix_Music* MTM = NULL;
 
 void MenuState::update()
 {
@@ -23,6 +25,10 @@ void MenuState::render()
 
 bool MenuState::onEnter()
 {
+	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+	Mix_VolumeMusic(18);
+	MTM = Mix_LoadMUS("Assets/Title.mp3");
+	Mix_PlayMusic(MTM, -1);
 	if (!TheTextureManager::Instance()->load("Assets/button.png", "playbutton",
 		TheGame::Instance()->getRenderer()))
 	{
@@ -53,6 +59,9 @@ bool MenuState::onExit()
 	m_gameObjects.clear();
 	TheTextureManager::Instance()->clearFromTextureMap("playbutton");
 	TheTextureManager::Instance()->clearFromTextureMap("exitbutton");
+
+	Mix_FreeMusic(MTM);
+	Mix_CloseAudio();
 	std::cout << "exiting MenuState\n";
 	return true;
 }

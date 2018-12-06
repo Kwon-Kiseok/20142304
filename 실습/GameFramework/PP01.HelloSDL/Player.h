@@ -1,6 +1,7 @@
 #pragma once
 #include "SDLGameObject.h"
 #include "InputHandler.h"
+#include "Missile.h"
 
 class Player : public SDLGameObject
 {
@@ -11,4 +12,5 @@ public:
 	virtual void clean();
 private:
 	void handleInput();
+	bool createMissile();
 };

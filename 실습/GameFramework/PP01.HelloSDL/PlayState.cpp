@@ -1,9 +1,9 @@
 #include "PlayState.h"
 #include "AnimatedGraphic.h"
-
+#include <SDL_mixer.h>
 //PlayState *PlayState::s_pInstance = NULL;
 const std::string PlayState::s_playID = "PLAY";
-
+Mix_Music* MM = NULL;
 
 void PlayState::update()
 {
@@ -11,15 +11,24 @@ void PlayState::update()
 	{
 		m_gameObjects[i]->update();
 	}
-	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[1]),
-		dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
+	if (m_gameObjects.size() >= 3)
 	{
-		TheGame::Instance()->getStateMachine()->changeState(GameOverState::Instance());
+		if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[1]),
+			dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
+		{
+			TheGame::Instance()->getStateMachine()->changeState(GameOverState::Instance());
+		}
+	}
+	else if (m_gameObjects.size() == 2)
+	{
+		TheGame::Instance()->getStateMachine()->changeState(VictoryState::Instance());
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(PauseState::Instance());
 	}
+
+
 }
 
 void PlayState::render()
@@ -32,6 +41,10 @@ void PlayState::render()
 
 bool PlayState::onEnter()
 {
+	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+	Mix_VolumeMusic(18);
+	MM = Mix_LoadMUS("Assets/BGM.mp3");
+	Mix_PlayMusic(MM, -1);
 	if (!TheTextureManager::Instance()->load("Assets/BG.png", "BG", TheGame::Instance()->getRenderer()))
 	{
 		return false;
@@ -54,7 +67,7 @@ bool PlayState::onEnter()
 	m_gameObjects.push_back(BG);
 	m_gameObjects.push_back(player);
 	m_gameObjects.push_back(enemy);
-	
+
 	std::cout << "entering PlayState\n";
 	return true;
 }
@@ -70,6 +83,9 @@ bool PlayState::onExit()
 	TheTextureManager::Instance()->clearFromTextureMap("BG");
 	TheTextureManager::Instance()->clearFromTextureMap("helicopter");
 	TheTextureManager::Instance()->clearFromTextureMap("helicopter2");
+
+	Mix_FreeMusic(MM);
+	Mix_CloseAudio();
 	std::cout << "exiting PlayState\n";
 	return true;
 }

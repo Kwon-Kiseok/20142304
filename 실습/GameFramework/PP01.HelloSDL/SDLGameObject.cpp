@@ -6,7 +6,6 @@ SDLGameObject::SDLGameObject(const LoaderParams* pParams)
 	: GameObject(pParams) , m_position(pParams->getX(), pParams->getY()),
 	m_velocity(0.0f,0.0f), m_acceleration(0.0f,0.0f)
 {
-
 	m_width = pParams->getWidth();
 	m_height = pParams->getHeight();
 
@@ -42,4 +41,6 @@ void SDLGameObject::update()
 
 void SDLGameObject::clean()
 {
+	TextureManager::Instance()->clearFromTextureMap(m_textureID);
+	
 }

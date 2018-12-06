@@ -6,6 +6,7 @@
 #include "PlayState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "VictoryState.h"
 #include "GameStateMachine.h"
 
 class Game
