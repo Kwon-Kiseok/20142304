@@ -12,7 +12,7 @@ SDLGameObject::SDLGameObject(const LoaderParams* pParams)
 
 	m_textureID = pParams->getTextureID();
 	m_currentRow = 1;
-	m_currentFrame = 1;
+	m_currentFrame = 0;
 }
 
 void SDLGameObject::draw()
@@ -37,6 +37,7 @@ void SDLGameObject::update()
 {
 	m_velocity += m_acceleration;
 	m_position += m_velocity;
+	
 }
 
 void SDLGameObject::clean()

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Game.h"
 
 Player::Player(const LoaderParams* pParams)
 	: SDLGameObject(pParams)
@@ -23,7 +24,6 @@ void Player::update()
 
 void Player::clean()
 {
-
 }
 
 void Player::handleInput()

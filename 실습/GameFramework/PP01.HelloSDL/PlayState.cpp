@@ -1,4 +1,5 @@
 #include "PlayState.h"
+#include "AnimatedGraphic.h"
 
 //PlayState *PlayState::s_pInstance = NULL;
 const std::string PlayState::s_playID = "PLAY";
@@ -10,11 +11,9 @@ void PlayState::update()
 	{
 		m_gameObjects[i]->update();
 	}
-	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
-		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
+	if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[1]),
+		dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
 	{
-		//폭발 효과
-		explosion();
 		TheGame::Instance()->getStateMachine()->changeState(GameOverState::Instance());
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
@@ -33,6 +32,10 @@ void PlayState::render()
 
 bool PlayState::onEnter()
 {
+	if (!TheTextureManager::Instance()->load("Assets/BG.png", "BG", TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
 	if (!TheTextureManager::Instance()->load("Assets/helicopter.png", "helicopter"
 		, TheGame::Instance()->getRenderer()))
 	{
@@ -43,10 +46,15 @@ bool PlayState::onEnter()
 	{
 		return false;
 	}
+
+	GameObject* BG = new SDLGameObject(new LoaderParams(0, 0, 640, 480, "BG"));
 	GameObject* player = new Player(new LoaderParams(500, 100, 128, 55, "helicopter"));
-	GameObject* enemy = new Enemy(new LoaderParams(100, 100, 128, 55, "helicopter2"));
+	SDLGameObject* enemy = new Enemy(new LoaderParams(100, 100, 128, 55, "helicopter2"));
+
+	m_gameObjects.push_back(BG);
 	m_gameObjects.push_back(player);
 	m_gameObjects.push_back(enemy);
+	
 	std::cout << "entering PlayState\n";
 	return true;
 }
@@ -59,6 +67,7 @@ bool PlayState::onExit()
 	}
 	m_gameObjects.clear();
 
+	TheTextureManager::Instance()->clearFromTextureMap("BG");
 	TheTextureManager::Instance()->clearFromTextureMap("helicopter");
 	TheTextureManager::Instance()->clearFromTextureMap("helicopter2");
 	std::cout << "exiting PlayState\n";
@@ -87,10 +96,4 @@ bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
 	if (rightA <= leftB) { return false; }
 	if (leftA >= rightB) { return false; }
 	return true;
-}
-
-void PlayState::explosion()
-{
-	//explosion 이미지 출력해주어야 함
-
 }
