@@ -23,6 +23,7 @@ void Enemy::update()
 	{
 		m_velocity.setY(-2);
 	}
+
 	SDLGameObject::update();
 }
 

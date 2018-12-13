@@ -10,6 +10,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+	bool isRight();
 private:
 	void handleInput();
 	bool createMissile();

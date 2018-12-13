@@ -12,7 +12,7 @@ void Missile::draw()
 }
 void Missile::update()
 {
-	m_velocity.setX(-5);
+	m_velocity.setX(velocity);
 
 	if (PlayState::Instance()->checkCollision(
 		dynamic_cast<SDLGameObject*>(PlayState::Instance()->m_gameObjects[2]),
@@ -22,7 +22,7 @@ void Missile::update()
 		PlayState::Instance()->m_gameObjects.pop_back();
 		PlayState::Instance()->m_gameObjects.pop_back();
 	}
-	if (m_position.getX() <= 0)
+	if (m_position.getX() <= 0 || m_position.getX() >= 640)
 	{
 		clean();
 		PlayState::Instance()->m_gameObjects.pop_back();

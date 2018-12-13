@@ -17,13 +17,16 @@ void Player::update()
 	m_velocity.setX(0);
 	m_velocity.setY(0);
 	handleInput();
+	isRight();
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
 	m_acceleration.setX(1);
+
 	SDLGameObject::update();
 }
 
 void Player::clean()
 {
+	SDLGameObject::clean();
 }
 
 void Player::handleInput()
@@ -46,9 +49,30 @@ bool Player::createMissile()
 		return false;
 	}
 
-	GameObject* missile = new Missile(new LoaderParams(m_position.getX()-78, m_position.getY(), 78, 55, "missile"));
-
-	PlayState::Instance()->m_gameObjects.push_back(missile);
+	if (isRight() == true)
+	{
+		Missile* missile = new Missile(new LoaderParams(m_position.getX() + 140, m_position.getY(), 78, 55, "missile"));
+		missile->velocity = 5;
+		PlayState::Instance()->m_gameObjects.push_back(missile);
+	}
+	else if (isRight() == false)
+	{
+		Missile* missile = new Missile(new LoaderParams(m_position.getX() - 78, m_position.getY(), 78, 55, "missile"));
+		missile->velocity = -5;
+		PlayState::Instance()->m_gameObjects.push_back(missile);
+	}
 
 	return true;
+}
+
+bool Player::isRight()
+{
+	if (InputHandler::Instance()->getMousePosition()->getX() > m_position.getX())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

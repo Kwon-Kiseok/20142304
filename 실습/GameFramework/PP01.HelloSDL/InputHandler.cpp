@@ -85,7 +85,6 @@ void InputHandler::onMouseButtonDown(SDL_Event event)
 	if (event.button.button == SDL_BUTTON_LEFT)
 	{
 		m_mouseButtonStates[LEFT] = true;
-		std::cout << "왼쪽 버튼 다운" << std::endl;
 	}
 	if (event.button.button == SDL_BUTTON_MIDDLE)
 	{
@@ -101,7 +100,6 @@ void InputHandler::onMouseButtonUp(SDL_Event event)
 	if (event.button.button == SDL_BUTTON_LEFT)
 	{
 		m_mouseButtonStates[LEFT] = false;
-		std::cout << "왼쪽 버튼 업" << std::endl;
 	}
 	if (event.button.button == SDL_BUTTON_MIDDLE)
 	{
