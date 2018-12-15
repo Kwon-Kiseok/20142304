@@ -1,6 +1,4 @@
 #pragma once
-#include "Player.h"
-#include "Enemy.h"
 #include "InputHandler.h"
 #include "MenuState.h"
 #include "PlayState.h"

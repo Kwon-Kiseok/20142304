@@ -1,4 +1,6 @@
 #pragma once
+#include "Player.h"
+#include "Enemy.h"
 #include "GameState.h"
 #include "SDLGameObject.h"
 #include "Game.h"
