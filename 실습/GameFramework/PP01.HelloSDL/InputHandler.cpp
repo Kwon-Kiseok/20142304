@@ -1,8 +1,6 @@
 #include "InputHandler.h"
 #include "Game.h"
 
-//InputHandler *InputHandler::s_pInstance = NULL;
-
 InputHandler::InputHandler()
 {
 	m_mousePosition = new Vector2D(0, 0);
@@ -14,7 +12,6 @@ InputHandler::InputHandler()
 
 void InputHandler::clean()
 {
-
 }
 
 void InputHandler::update()

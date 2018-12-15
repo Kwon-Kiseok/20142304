@@ -4,9 +4,6 @@
 bool Game::init(const char*title, int xpos, int ypos,
 	int width, int height, bool fullscreen)
 {
-	//main.cpp에서 m_bRunning 으로 게임 반복문의 조건을 보고 있음
-	//Game.h 에서 m_bRunning 이 false 값으로 초기화 되어있기 때문에 
-	//init이 될 때 게임이 돌아간다는 것을 보여주기 위해 true로 할당해줌
 	m_bRunning = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
 	{

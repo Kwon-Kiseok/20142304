@@ -4,7 +4,6 @@
 Player::Player(const LoaderParams* pParams)
 	: SDLGameObject(pParams)
 {
-
 }
 
 void Player::draw()
@@ -26,6 +25,8 @@ void Player::update()
 
 void Player::clean()
 {
+	TheTextureManager::Instance()->clearFromTextureMap("missile");
+	TheTextureManager::Instance()->clearFromTextureMap("smoke");
 	SDLGameObject::clean();
 }
 

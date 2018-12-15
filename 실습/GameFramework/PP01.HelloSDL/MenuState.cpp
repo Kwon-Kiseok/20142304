@@ -29,6 +29,11 @@ bool MenuState::onEnter()
 	Mix_VolumeMusic(18);
 	MTM = Mix_LoadMUS("Assets/Title.mp3");
 	Mix_PlayMusic(MTM, -1);
+	if (!TheTextureManager::Instance()->load("Assets/MenuBG.png", "MenuBG",
+		TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
 	if (!TheTextureManager::Instance()->load("Assets/button.png", "playbutton",
 		TheGame::Instance()->getRenderer()))
 	{
@@ -39,11 +44,13 @@ bool MenuState::onEnter()
 	{
 		return false;
 	}
+	GameObject* menuBG = new SDLGameObject(new LoaderParams(0, 0, 1024, 768, "MenuBG"));
 	GameObject* button1 = new MenuButton(
 		new LoaderParams(312, 334, 400, 100, "playbutton"), s_menuToPlay);
 	std::cout << "entering MenuState\n";
 	GameObject* button2 = new MenuButton(
 		new LoaderParams(312, 500, 400, 100, "exitbutton"), s_exitFromMenu);
+	m_gameObjects.push_back(menuBG);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering MenuState\n";
@@ -57,6 +64,7 @@ bool MenuState::onExit()
 		m_gameObjects[i]->clean();
 	}
 	m_gameObjects.clear();
+	TheTextureManager::Instance()->clearFromTextureMap("MenuBG");
 	TheTextureManager::Instance()->clearFromTextureMap("playbutton");
 	TheTextureManager::Instance()->clearFromTextureMap("exitbutton");
 

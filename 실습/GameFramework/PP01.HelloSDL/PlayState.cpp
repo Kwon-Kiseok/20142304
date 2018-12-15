@@ -1,7 +1,6 @@
 #include "PlayState.h"
 #include "AnimatedGraphic.h"
 #include <SDL_mixer.h>
-//PlayState *PlayState::s_pInstance = NULL;
 const std::string PlayState::s_playID = "PLAY";
 Mix_Music* MM = NULL;
 

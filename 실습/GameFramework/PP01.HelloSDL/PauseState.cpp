@@ -2,8 +2,6 @@
 #include "MenuButton.h"
 #include "Game.h"
 
-//PauseState *PauseState::s_pInstance = NULL;
-
 const std::string PauseState::s_pauseID = "PAUSE";
 
 void PauseState::s_pauseToMain()
@@ -13,7 +11,6 @@ void PauseState::s_pauseToMain()
 
 void PauseState::s_resumePlay()
 {
-	//popState로 이전 화면으로 돌아감
 	TheGame::Instance()->getStateMachine()->popState();
 }
 
@@ -70,5 +67,3 @@ bool PauseState::onExit()
 	std::cout << "exiting PauseState\n";
 	return true;
 }
-//update 와 render 함수 중복되므로 최적화 할 때 그냥 게임스테이트에 상속받아서 사용하도록 함
-//모든 state에 똑같은 부분들을 최적화 하도록 new 키워드로 되어있는 부분 싱글턴이므로 instance로 접근하도록 바꿈

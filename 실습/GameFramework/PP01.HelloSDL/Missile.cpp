@@ -33,6 +33,7 @@ void Missile::update()
 }
 void Missile::clean()
 {
+	TheTextureManager::Instance()->clearFromTextureMap("reload");
 	SDLGameObject::clean();
 }
 
