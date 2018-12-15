@@ -52,14 +52,16 @@ bool Player::createMissile()
 	if (isRight() == true)
 	{
 		Missile* missile = new Missile(new LoaderParams(m_position.getX() + 140, m_position.getY(), 78, 55, "missile"));
-		missile->velocity = 5;
+		missile->velocity = 10;
 		PlayState::Instance()->m_gameObjects.push_back(missile);
+		missile->reloadUI();
 	}
 	else if (isRight() == false)
 	{
 		Missile* missile = new Missile(new LoaderParams(m_position.getX() - 78, m_position.getY(), 78, 55, "missile"));
-		missile->velocity = -5;
+		missile->velocity = -10;
 		PlayState::Instance()->m_gameObjects.push_back(missile);
+		missile->reloadUI();
 	}
 
 	return true;

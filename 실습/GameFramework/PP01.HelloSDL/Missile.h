@@ -8,5 +8,6 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+	bool reloadUI();
 	int velocity = 0;
 };

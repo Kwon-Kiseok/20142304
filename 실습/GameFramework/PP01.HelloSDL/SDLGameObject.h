@@ -13,6 +13,7 @@ public:
 	Vector2D& getPosition() { return m_position; }
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }
+	std::string getID() { return m_textureID; }
 
 protected:
 
