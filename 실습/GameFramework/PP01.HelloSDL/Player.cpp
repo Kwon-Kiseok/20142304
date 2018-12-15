@@ -48,12 +48,21 @@ bool Player::createMissile()
 	{
 		return false;
 	}
+	if (!TheTextureManager::Instance()->load("Assets/smoke.png", "smoke"
+		, TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
 
 	if (isRight() == true)
 	{
 		Missile* missile = new Missile(new LoaderParams(m_position.getX() + 140, m_position.getY(), 78, 55, "missile"));
 		missile->velocity = 10;
 		PlayState::Instance()->m_gameObjects.push_back(missile);
+
+		SDLGameObject* smoke = new SDLGameObject(new LoaderParams(missile->getPosition().getX()+55, missile->getPosition().getY(), 55, 55, "smoke"));
+		PlayState::Instance()->m_gameObjects.push_back(smoke);
+
 		missile->reloadUI();
 	}
 	else if (isRight() == false)
@@ -61,6 +70,10 @@ bool Player::createMissile()
 		Missile* missile = new Missile(new LoaderParams(m_position.getX() - 78, m_position.getY(), 78, 55, "missile"));
 		missile->velocity = -10;
 		PlayState::Instance()->m_gameObjects.push_back(missile);
+
+		SDLGameObject* smoke = new SDLGameObject(new LoaderParams(missile->getPosition().getX()-55, missile->getPosition().getY(), 55, 55, "smoke"));
+		PlayState::Instance()->m_gameObjects.push_back(smoke);
+
 		missile->reloadUI();
 	}
 

@@ -22,8 +22,9 @@ void Missile::update()
 		PlayState::Instance()->m_gameObjects.pop_back();
 		PlayState::Instance()->m_gameObjects.pop_back();
 		PlayState::Instance()->m_gameObjects.pop_back();
+		PlayState::Instance()->m_gameObjects.pop_back();
 	}
-	if (m_position.getX() <= 0 || m_position.getX() >= 640)
+	if (m_position.getX() <= 0 || m_position.getX() >= 1024)
 	{
 		clean();
 		PlayState::Instance()->m_gameObjects.pop_back();
@@ -43,7 +44,7 @@ bool Missile::reloadUI()
 		return false;
 	}
 
-	SDLGameObject* reload = new SDLGameObject(new LoaderParams(580, 400, 55, 55, "reload"));
+	SDLGameObject* reload = new SDLGameObject(new LoaderParams(919, 693, 55, 55, "reload"));
 	PlayState::Instance()->m_gameObjects.push_back(reload);
 
 	return true;

@@ -60,7 +60,7 @@ bool PlayState::onEnter()
 		return false;
 	}
 
-	GameObject* BG = new SDLGameObject(new LoaderParams(0, 0, 640, 480, "BG"));
+	GameObject* BG = new SDLGameObject(new LoaderParams(0, 0, 1024, 768, "BG"));
 	GameObject* player = new Player(new LoaderParams(500, 100, 128, 55, "helicopter"));
 	SDLGameObject* enemy = new Enemy(new LoaderParams(100, 100, 128, 55, "helicopter2"));
 

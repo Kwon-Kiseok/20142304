@@ -10,16 +10,14 @@ bool Game::init(const char*title, int xpos, int ypos,
 	m_bRunning = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
 	{
-		m_pWindow = SDL_CreateWindow("HOSEO BAR",
+		m_pWindow = SDL_CreateWindow("MINI GAME",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
-			640, 480, SDL_WINDOW_SHOWN);
+			1024, 768, SDL_WINDOW_SHOWN);
 		if (m_pWindow != 0)
 		{
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 		}
-		//SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
-
 		m_pGameStateMachine = new GameStateMachine();
 		m_pGameStateMachine->changeState(MenuState::Instance());
 	}

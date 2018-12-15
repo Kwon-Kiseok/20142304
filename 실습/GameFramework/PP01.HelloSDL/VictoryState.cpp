@@ -21,6 +21,8 @@ void VictoryState::render()
 }
 bool VictoryState::onEnter()
 {
+	SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 255, 255, 255, 255);
+
 	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
 	Mix_VolumeMusic(18);
 	MVM = Mix_LoadMUS("Assets/VictoryBGM.mp3");
@@ -40,9 +42,9 @@ bool VictoryState::onEnter()
 	{
 		return false;
 	}
-	GameObject* victory = new SDLGameObject(new LoaderParams(120, 0, 380, 313, "victory"));
-	GameObject* button1 = new MenuButton(new LoaderParams(200, 250, 200, 80, "mainbutton"), s_victoryToMain);
-	GameObject* button2 = new MenuButton(new LoaderParams(200, 350, 200, 80, "exitbutton"), s_exitFromVictory);
+	GameObject* victory = new SDLGameObject(new LoaderParams(320, 150, 380, 313, "victory"));
+	GameObject* button1 = new MenuButton(new LoaderParams(412, 500, 200, 80, "mainbutton"), s_victoryToMain);
+	GameObject* button2 = new MenuButton(new LoaderParams(412, 600, 200, 80, "exitbutton"), s_exitFromVictory);
 
 	m_gameObjects.push_back(victory);
 	m_gameObjects.push_back(button1);
@@ -51,6 +53,8 @@ bool VictoryState::onEnter()
 }
 bool VictoryState::onExit()
 {
+	SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0, 0, 0, 255);
+
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
